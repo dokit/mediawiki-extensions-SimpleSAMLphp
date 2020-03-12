@@ -111,6 +111,18 @@ class SimpleSAMLphp extends PluggableAuth {
 		}
 		$this->attributes = $saml->getAttributes();
 
+		$config = new GlobalVarConfig( 'wgSimpleSAMLphp_' );
+		$addNameIdParameter = $config->get( 'AddNameIdParameter' );
+		if ($addNameIdParameter) {
+			if ($addNameIdParameter === true) {
+				$addNameIdParameter = 'saml:sp:NameID';
+			}
+			$nameId = $saml->getAuthData($addNameIdParameter);
+			if ($nameId && isset($nameId['value'])) {
+				$this->attributes['NameId'] = $nameId['value'];
+			}
+		}
+
 		try {
 			$this->initUsernameAndId();
 			$this->initRealname();

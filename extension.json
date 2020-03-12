@@ -32,6 +32,9 @@
 		"PluggableAuthPopulateGroups": [ "SimpleSAMLphp::populateGroups" ]
 	},
 	"config": {
+		"SimpleSAMLphp_AddNameIdParameter": {
+			"value":  false
+		},
 		"SimpleSAMLphp_UsernameAttribute": {
 			"value":  null
 		},
