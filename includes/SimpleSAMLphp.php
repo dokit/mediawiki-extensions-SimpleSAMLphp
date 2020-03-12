@@ -118,8 +118,8 @@ class SimpleSAMLphp extends PluggableAuth {
 				$addNameIdParameter = 'saml:sp:NameID';
 			}
 			$nameId = $saml->getAuthData($addNameIdParameter);
-			if ($nameId && isset($nameId['value'])) {
-				$this->attributes['NameId'] = $nameId['value'];
+			if ( $nameId ) {
+				$this->attributes['NameId'] = $nameId->getValue();
 			}
 		}
 
